@@ -1,0 +1,56 @@
+{
+  "Fractured": {
+    "total_images": 407,
+    "dimensions": {
+      "width_mean": 2921.7616707616708,
+      "width_std": 28.179133987660986,
+      "height_mean": 1435.0,
+      "height_std": 0.0,
+      "aspect_ratio_mean": 2.0360708507049967
+    },
+    "pixel_statistics": {
+      "mean_intensity": 94.56448190773897,
+      "std_intensity": 45.257030065223084,
+      "brightness": 94.56448190773897,
+      "contrast": 45.257030065223084
+    },
+    "annotations": {
+      "avg_points_per_image": 1.0245700245700247,
+      "max_points": 2,
+      "min_points": 1
+    }
+  },
+  "Healthy": {
+    "total_images": 114,
+    "dimensions": {
+      "width_mean": 2877.2017543859647,
+      "width_std": 23.832448698302436,
+      "height_mean": 1435.0,
+      "height_std": 0.0,
+      "aspect_ratio_mean": 2.005018644171404
+    },
+    "pixel_statistics": {
+      "mean_intensity": 86.04738383667878,
+      "std_intensity": 44.91702941892105,
+      "brightness": 86.04738383667878,
+      "contrast": 44.91702941892105
+    },
+    "annotations": {
+      "avg_points_per_image": 4.368421052631579,
+      "max_points": 18,
+      "min_points": 1
+    }
+  },
+  "overall": {
+    "total_images": 521,
+    "class_distribution": {
+      "Fractured": 407,
+      "Healthy": 114
+    },
+    "class_imbalance_ratio": 3.5701754385964914,
+    "recommended_class_weights": {
+      "Healthy": 3.5701754385964914,
+      "Fractured": 1.0
+    }
+  }
+}

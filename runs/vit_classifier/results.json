@@ -1,0 +1,88 @@
+{
+  "model_name": "vit_tiny_patch16_224",
+  "best_epoch": 1,
+  "test_metrics": {
+    "accuracy": 0.9333333333333333,
+    "precision": 1.0,
+    "recall": 0.8571428571428571,
+    "f1_score": 0.9230769230769231,
+    "loss": 0.2879882196585337
+  },
+  "test_predictions": [
+    {
+      "image": "stage2_negative_samples\\neg_0014_rct11_0011.jpg",
+      "true_label": 0,
+      "predicted_label": 0
+    },
+    {
+      "image": "stage2_negative_samples\\neg_0048_rct6_0018.jpg",
+      "true_label": 0,
+      "predicted_label": 0
+    },
+    {
+      "image": "stage2_fracture_dataset\\train\\images\\0013_crop08.png",
+      "true_label": 1,
+      "predicted_label": 1
+    },
+    {
+      "image": "stage2_negative_samples\\neg_0048_rct11_0023.jpg",
+      "true_label": 0,
+      "predicted_label": 0
+    },
+    {
+      "image": "stage2_fracture_dataset\\train\\images\\0018_crop00.png",
+      "true_label": 1,
+      "predicted_label": 1
+    },
+    {
+      "image": "stage2_fracture_dataset\\train\\images\\0006_crop00.png",
+      "true_label": 1,
+      "predicted_label": 1
+    },
+    {
+      "image": "stage2_negative_samples\\neg_0048_rct4_0016.jpg",
+      "true_label": 0,
+      "predicted_label": 0
+    },
+    {
+      "image": "stage2_fracture_dataset\\test\\images\\0034_crop01.png",
+      "true_label": 1,
+      "predicted_label": 1
+    },
+    {
+      "image": "stage2_fracture_dataset\\train\\images\\0029_crop01.png",
+      "true_label": 1,
+      "predicted_label": 1
+    },
+    {
+      "image": "stage2_negative_samples\\neg_0064_rct7_0035.jpg",
+      "true_label": 0,
+      "predicted_label": 0
+    },
+    {
+      "image": "stage2_negative_samples\\neg_0065_rct2_0041.jpg",
+      "true_label": 0,
+      "predicted_label": 0
+    },
+    {
+      "image": "stage2_fracture_dataset\\train\\images\\0023_crop04.png",
+      "true_label": 1,
+      "predicted_label": 1
+    },
+    {
+      "image": "stage2_fracture_dataset\\train\\images\\0010_crop02.png",
+      "true_label": 1,
+      "predicted_label": 0
+    },
+    {
+      "image": "stage2_negative_samples\\neg_0048_rct5_0017.jpg",
+      "true_label": 0,
+      "predicted_label": 0
+    },
+    {
+      "image": "stage2_negative_samples\\neg_0064_rct6_0034.jpg",
+      "true_label": 0,
+      "predicted_label": 0
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Data and Models (large files)
+data/RCT_images/
+data/RCT_annotations/
+*.pt
+*.pth
+*.ckpt
+*.weights
+detectors/*.pt
+checkpoints/
+runs/*/weights/
+
+# Keep only small result files
+!runs/vit_classifier/results.json
+!runs/vit_classifier/confusion_matrix.png
+!runs/vit_classifier/training_history.png
+!runs/vit_classifier/test_visualization.png
+!runs/pipeline_performance.json
+
+# Outputs
+outputs/eda/
+stage2_negative_samples/
+
+# Logs
+*.log
+wandb/
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+
+# Large training results
+train_results/*.csv
+*.csv
+
+# Environment
+*.env
+.env.local
+environment.yml

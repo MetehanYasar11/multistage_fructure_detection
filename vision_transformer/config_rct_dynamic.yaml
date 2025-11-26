@@ -1,0 +1,63 @@
+# Dynamic Patch Transformer Configuration for RCT Classification
+# Target: >90% classification accuracy (F1 > 0.90)
+
+seed: 42
+
+dataset:
+  root_dir: "RCT_classification_dataset"
+  image_size: null  # Dynamic - keep original crop sizes
+  augmentation:
+    rotation: 15
+    brightness: 0.2
+    contrast: 0.2
+    horizontal_flip: true
+    vertical_flip: false
+    random_crop: false  # Don't crop - we need all tooth information
+
+model:
+  type: "dynamic_patch_transformer"
+  d_model: 512
+  nhead: 8
+  num_layers: 6
+  dim_feedforward: 2048
+  dropout: 0.1
+  min_patch_size: 10
+  # Target density from baseline: 300 patches for 1400x2800 image
+  target_patch_density: 7.653e-05  # 300 / (1400 * 2800)
+
+training:
+  epochs: 50
+  batch_size: 16  # Smaller batch for larger model
+  
+  optimizer:
+    type: "adamw"
+    lr: 0.0001  # Lower LR for stable training
+    weight_decay: 0.01
+    betas: [0.9, 0.999]
+  
+  scheduler:
+    type: "cosine"
+    warmup_epochs: 5
+    min_lr: 0.000001
+  
+  loss:
+    type: "focal"
+    alpha: 0.25  # Focus on minority class (fractured)
+    gamma: 2.0
+    pos_weight: 4.2  # Class imbalance: 1203 healthy / 286 fractured
+    label_smoothing: 0.1  # Prevent overconfidence
+  
+  grad_clip: 1.0
+  mixed_precision: true
+  
+  early_stopping:
+    patience: 15  # More patience for better convergence
+    min_delta: 0.001
+
+output_dir: "checkpoints/rct_dynamic_transformer"
+
+logging:
+  log_interval: 5
+  save_interval: 5
+  wandb_project: "dental-fracture-rct"
+  wandb_run_name: "dynamic_patch_transformer_v1"

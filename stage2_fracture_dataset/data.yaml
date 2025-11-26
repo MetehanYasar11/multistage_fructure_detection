@@ -1,0 +1,19 @@
+# Stage 2 Fracture Detection Dataset
+# Created: November 25, 2025
+
+# Paths
+path: C:\Users\maspe\OneDrive\Masaüstü\masterthesis\dental_fracture_detection\stage2_fracture_dataset
+train: train/images
+val: val/images
+test: test/images
+
+# Classes
+nc: 1  # number of classes
+names: ['fracture']  # class names
+
+# Training settings (recommended)
+# epochs: 100
+# batch: 16
+# imgsz: 640
+# conf: 0.25
+# iou: 0.45

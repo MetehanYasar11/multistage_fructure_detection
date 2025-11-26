@@ -1,0 +1,70 @@
+# Regularized Dynamic Patch Transformer Configuration
+# Fix: Heavy overfitting (Train F1=0.99, Val F1=0.43)
+# Solution: Strong regularization + aggressive augmentation
+
+seed: 42
+
+dataset:
+  root_dir: "RCT_classification_dataset"
+  image_size: null  # Dynamic - keep original crop sizes
+  augmentation:
+    # Aggressive augmentation to prevent overfitting
+    rotation: 30  # Increased from 15
+    brightness: 0.3  # Increased from 0.2
+    contrast: 0.3
+    horizontal_flip: true
+    vertical_flip: true  # Added
+    random_erasing: 0.3  # Added - randomly mask patches
+    gaussian_noise: 0.02  # Added
+    random_crop_scale: [0.85, 1.0]  # Added - slight crops
+
+model:
+  type: "dynamic_patch_transformer"
+  d_model: 256  # REDUCED from 512 (smaller model)
+  nhead: 4  # REDUCED from 8
+  num_layers: 4  # REDUCED from 6
+  dim_feedforward: 1024  # REDUCED from 2048
+  dropout: 0.3  # INCREASED from 0.1 (heavy dropout)
+  attention_dropout: 0.2  # Added
+  min_patch_size: 10
+  target_patch_density: 7.653e-05
+
+training:
+  epochs: 100  # Increased for proper convergence
+  batch_size: 8  # REDUCED from 16 (more batches, better generalization)
+  
+  optimizer:
+    type: "adamw"
+    lr: 0.00005  # REDUCED from 0.0001 (slower, more stable)
+    weight_decay: 0.05  # INCREASED from 0.01 (stronger L2)
+    betas: [0.9, 0.999]
+  
+  scheduler:
+    type: "cosine"
+    warmup_epochs: 10  # Increased from 5
+    min_lr: 0.0000001
+  
+  loss:
+    type: "focal"
+    alpha: 0.25
+    gamma: 2.0
+    pos_weight: 4.2
+    label_smoothing: 0.2  # INCREASED from 0.1 (more smoothing)
+  
+  grad_clip: 0.5  # REDUCED from 1.0 (gentler updates)
+  mixed_precision: true
+  
+  early_stopping:
+    patience: 20  # Increased from 15
+    min_delta: 0.001
+  
+  # Stochastic depth (drop entire layers randomly)
+  stochastic_depth: 0.1
+
+output_dir: "checkpoints/rct_dynamic_transformer_v2"
+
+logging:
+  log_interval: 5
+  save_interval: 5
+  wandb_project: "dental-fracture-rct"
+  wandb_run_name: "dynamic_patch_transformer_v2_regularized"

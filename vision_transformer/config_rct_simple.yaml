@@ -1,0 +1,82 @@
+# RCT Classification - Simple CNN Config
+
+# Experiment
+experiment_name: "rct_simple_cnn"
+run_name: "rct_cnn_run1"
+output_dir: "checkpoints/rct_cnn"
+seed: 42
+
+# Dataset
+dataset:
+  type: "rct"
+  root_dir: "RCT_classification_dataset"
+  split_file: "RCT_classification_dataset/train_val_test_split.json"
+  image_size: 224
+  use_clahe: false
+
+# Model - Simple ResNet18
+model:
+  type: "efficientnet"  # Will use ResNet18 actually
+  backbone: "resnet18"
+  pretrained: true
+  dropout: 0.3
+
+# Training
+training:
+  epochs: 30
+  batch_size: 64  # Larger batch
+  num_workers: 0
+  pin_memory: true
+  
+  # Optimizer
+  optimizer:
+    type: "adamw"
+    lr: 0.001
+    weight_decay: 0.01
+    betas: [0.9, 0.999]
+  
+  # Loss - Simple BCE
+  loss:
+    type: "bce"  # Simple binary cross-entropy
+    pos_weight: 2.5
+  
+  # Scheduler
+  scheduler:
+    type: "reduce_on_plateau"
+    mode: "max"
+    factor: 0.5
+    patience: 5
+    min_lr: 0.00000001
+    metric: "val_f1"
+  
+  # Regularization
+  grad_clip: 1.0
+  label_smoothing: 0.0
+  mixup_alpha: 0.0
+  
+  # AMP
+  use_amp: true
+  
+  # Early Stopping
+  early_stopping:
+    patience: 10
+    metric: "val_f1"
+    mode: "max"
+
+# Validation
+validation:
+  interval: 1
+  save_best: true
+  metric: "f1"
+
+# Logging
+logging:
+  use_wandb: false
+  log_interval: 10
+  save_predictions: true
+  
+# Checkpointing
+checkpointing:
+  save_freq: 5
+  keep_last_n: 3
+  save_best_only: false

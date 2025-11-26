@@ -1,0 +1,21 @@
+{
+  "stage1": {
+    "precision": 0.95,
+    "recall": 0.98,
+    "f1_or_map": 0.99
+  },
+  "stage2": {
+    "accuracy": 0.9333333333333333,
+    "precision": 1.0,
+    "recall": 0.8571428571428571,
+    "f1": 0.9230769230769231
+  },
+  "pipeline": {
+    "recall": 0.84,
+    "precision": 0.95,
+    "accuracy": 0.9146666666666666,
+    "f1": 0.8916201117318435,
+    "sensitivity": 0.8400000000000001,
+    "specificity": 0.98
+  }
+}

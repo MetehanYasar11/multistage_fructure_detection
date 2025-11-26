@@ -1,0 +1,769 @@
+{
+  "total_samples": 74,
+  "successful": 74,
+  "failed": 0,
+  "accuracy": 0.7432432432432432,
+  "precision": 0.7794117647058824,
+  "recall": 0.9298245614035088,
+  "f1_score": 0.848,
+  "confusion_matrix": [
+    [
+      2,
+      15
+    ],
+    [
+      4,
+      53
+    ]
+  ],
+  "localization": {
+    "num_samples": 57,
+    "mean_iou": 0.002221582929458151,
+    "median_iou": 0.0,
+    "good_localization": 0,
+    "moderate_localization": 0,
+    "poor_localization": 57
+  },
+  "per_sample_results": [
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0092.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.7881779670715332,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0285.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8650722503662109,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0090.jpg",
+      "true_label": 0,
+      "pred_label": 1,
+      "probability": 0.6444411277770996,
+      "correct": false,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0431.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.805061936378479,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0033.jpg",
+      "true_label": 0,
+      "pred_label": 1,
+      "probability": 0.5317534804344177,
+      "correct": false,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0084.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.7249631285667419,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0069.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.7951875925064087,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0024.jpg",
+      "true_label": 0,
+      "pred_label": 0,
+      "probability": 0.454928457736969,
+      "correct": true,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0072.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8195293545722961,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.013147790908920645,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0110.jpg",
+      "true_label": 0,
+      "pred_label": 1,
+      "probability": 0.727043628692627,
+      "correct": false,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0313.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8423575758934021,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0091.jpg",
+      "true_label": 0,
+      "pred_label": 1,
+      "probability": 0.8383849263191223,
+      "correct": false,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0137.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8350334167480469,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0354.jpg",
+      "true_label": 1,
+      "pred_label": 0,
+      "probability": 0.35764357447624207,
+      "correct": false,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0288.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8696998357772827,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0037.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.6101406216621399,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0343.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.7907114028930664,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.010565802511752887,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0299.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8813242316246033,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0078.jpg",
+      "true_label": 0,
+      "pred_label": 1,
+      "probability": 0.6667366623878479,
+      "correct": false,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0139.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.7815064191818237,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0190.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8587464690208435,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.03355,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0346.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.7839221358299255,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0278.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.7867382168769836,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0395.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8174689412117004,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0268.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8220618963241577,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0105.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8219845294952393,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0081.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.7554891109466553,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0140.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.6086969375610352,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0104.jpg",
+      "true_label": 0,
+      "pred_label": 1,
+      "probability": 0.6643651127815247,
+      "correct": false,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0425.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8010442852973938,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.022166666666666668,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0270.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.6186667084693909,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0142.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.6495627760887146,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0427.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8467070460319519,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0080.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8092101216316223,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0363.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8331252336502075,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0021.jpg",
+      "true_label": 0,
+      "pred_label": 1,
+      "probability": 0.7989433407783508,
+      "correct": false,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0176.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.7882580757141113,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0150.jpg",
+      "true_label": 1,
+      "pred_label": 0,
+      "probability": 0.47506797313690186,
+      "correct": false,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0109.jpg",
+      "true_label": 0,
+      "pred_label": 1,
+      "probability": 0.693702757358551,
+      "correct": false,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0156.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.7925563454627991,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0424.jpg",
+      "true_label": 1,
+      "pred_label": 0,
+      "probability": 0.3550966680049896,
+      "correct": false,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0406.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.7869426012039185,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0071.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8829805254936218,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0078.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8355826139450073,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.018534966891774404,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0322.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.6410030126571655,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0217.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8388420343399048,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0327.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.784096896648407,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0042.jpg",
+      "true_label": 0,
+      "pred_label": 1,
+      "probability": 0.8008537888526917,
+      "correct": false,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0397.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8666930198669434,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0284.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8278387188911438,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0014.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8093649744987488,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0002.jpg",
+      "true_label": 0,
+      "pred_label": 1,
+      "probability": 0.7554185390472412,
+      "correct": false,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0048.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.7224496603012085,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0067.jpg",
+      "true_label": 0,
+      "pred_label": 1,
+      "probability": 0.676797091960907,
+      "correct": false,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0375.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8757005333900452,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0063.jpg",
+      "true_label": 0,
+      "pred_label": 1,
+      "probability": 0.785723865032196,
+      "correct": false,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0168.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8718913793563843,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0062.jpg",
+      "true_label": 0,
+      "pred_label": 0,
+      "probability": 0.36768215894699097,
+      "correct": true,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0264.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8675826191902161,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0180.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8051255345344543,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0038.jpg",
+      "true_label": 0,
+      "pred_label": 1,
+      "probability": 0.6689981818199158,
+      "correct": false,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0247.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.807921290397644,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0179.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8232062458992004,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0164.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8726383447647095,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0106.jpg",
+      "true_label": 0,
+      "pred_label": 1,
+      "probability": 0.6771814227104187,
+      "correct": false,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0207.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.7976469993591309,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0250.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8667417764663696,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.028665,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0315.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8694802522659302,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0266.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8988086581230164,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0429.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8428186178207397,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0423.jpg",
+      "true_label": 1,
+      "pred_label": 0,
+      "probability": 0.3580290973186493,
+      "correct": false,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0337.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.8082741498947144,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Healthy\\0075.jpg",
+      "true_label": 0,
+      "pred_label": 1,
+      "probability": 0.6021873354911804,
+      "correct": false,
+      "has_gt": true,
+      "iou": null,
+      "success": true
+    },
+    {
+      "image": "c:\\Users\\maspe\\OneDrive\\Masa\u00fcst\u00fc\\masterthesis\\Dataset_2021\\Dataset_2021\\Dataset\\Fractured\\0102.jpg",
+      "true_label": 1,
+      "pred_label": 1,
+      "probability": 0.653373122215271,
+      "correct": true,
+      "has_gt": true,
+      "iou": 0.0,
+      "success": true
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+"""
+Full Training - Direct Script
+
+Runs full training without config file complications.
+"""
+
+import torch
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from torch.utils.data import DataLoader
+from data import DentalXrayDataset, get_train_transforms, get_val_transforms
+from models import create_patch_transformer
+from training import Trainer
+from utils import set_seed, get_device
+
+
+def main():
+    print("="*70)
+    print("FULL TRAINING - PATCH TRANSFORMER BASE")
+    print("="*70)
+    
+    # Configuration
+    seed = 42
+    image_size = (1400, 2800)
+    batch_size = 6  # Tested optimal for RTX 5070 Ti
+    epochs = 50
+    
+    set_seed(seed)
+    device = get_device()
+    
+    # Datasets  
+    print("\nLoading datasets...")
+    split_file = "outputs/splits/train_val_test_split.json"
+    
+    train_dataset = DentalXrayDataset(
+        root_dir=r"c:\Users\maspe\OneDrive\Masaüstü\masterthesis\Dataset_2021\Dataset_2021\Dataset",
+        split='train',
+        split_file=split_file,
+        transform=get_train_transforms(image_size=image_size)
+    )
+    
+    val_dataset = DentalXrayDataset(
+        root_dir=r"c:\Users\maspe\OneDrive\Masaüstü\masterthesis\Dataset_2021\Dataset_2021\Dataset",
+        split='val',
+        split_file=split_file,
+        transform=get_val_transforms(image_size=image_size)
+    )
+    
+    print(f"Train samples: {len(train_dataset)}")
+    print(f"Val samples: {len(val_dataset)}")
+    
+    # Data loaders
+    train_loader = DataLoader(
+        train_dataset,
+        batch_size=batch_size,
+        shuffle=True,
+        num_workers=4,
+        pin_memory=True,
+        persistent_workers=True
+    )
+    
+    val_loader = DataLoader(
+        val_dataset,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=4,
+        pin_memory=True,
+        persistent_workers=True
+    )
+    
+    # Model
+    print("\nCreating model...")
+    model = create_patch_transformer(
+        image_size=image_size,
+        patch_size=100,
+        model_size='base',
+        aggregation='max'
+    )
+    
+    # Training config
+    config = {
+        'loss_function': 'combined',
+        'optimizer': {
+            'name': 'adamw',
+            'lr': 1e-4,
+            'weight_decay': 0.01,
+            'betas': (0.9, 0.999)
+        },
+        'scheduler': {
+            'name': 'cosine',
+            'min_lr': 1e-6
+        },
+        'use_amp': True,
+        'gradient_clip': 1.0,
+        'early_stopping_patience': 15,
+        'early_stopping_delta': 0.001,
+        'epochs': epochs
+    }
+    
+    # Trainer
+    print("\nInitializing trainer...")
+    trainer = Trainer(
+        model=model,
+        train_loader=train_loader,
+        val_loader=val_loader,
+        config=config,
+        device=device,
+        checkpoint_dir="checkpoints/patch_transformer_full",
+        use_wandb=False
+    )
+    
+    # Train
+    print(f"\nStarting training for {epochs} epochs...")
+    print("="*70)
+    print("\n💡 TIP: Open another terminal and run:")
+    print("   python monitor_training.py -w")
+    print("   to watch training progress in real-time!")
+    print("\n" + "="*70)
+    
+    try:
+        trainer.train(num_epochs=epochs)
+        
+        print("\n" + "="*70)
+        print("✅ TRAINING COMPLETED SUCCESSFULLY!")
+        print("="*70)
+        print(f"\nBest validation F1: {trainer.best_val_f1:.4f}")
+        print(f"Best validation Dice: {trainer.best_val_dice:.4f}")
+        print("\n📁 Checkpoints saved to: checkpoints/patch_transformer_full/")
+        print("📊 Training history: checkpoints/patch_transformer_full/training_history.json")
+        
+    except KeyboardInterrupt:
+        print("\n\n⚠️  Training interrupted by user")
+        print(f"Current epoch: {trainer.current_epoch + 1}/{epochs}")
+        print(f"Best F1 so far: {trainer.best_val_f1:.4f}")
+        print("\nCheckpoints saved. You can resume training later.")
+        return 1
+    
+    except Exception as e:
+        print(f"\n\n❌ Training failed: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return 1
+    
+    return 0
+
+
+if __name__ == "__main__":
+    exit_code = main()
+    sys.exit(exit_code)

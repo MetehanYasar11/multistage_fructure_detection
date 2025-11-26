@@ -1,0 +1,94 @@
+# RCT Classification Training Configuration
+# Train baseline model on single-tooth RCT dataset
+
+# Experiment
+experiment_name: "rct_patch_transformer"
+run_name: "rct_baseline_run1"
+output_dir: "checkpoints/rct_classifier"
+seed: 42
+
+# Dataset
+dataset:
+  type: "rct"  # Use RCT dataset
+  root_dir: "RCT_classification_dataset"
+  split_file: "RCT_classification_dataset/train_val_test_split.json"
+  image_size: 224
+  use_clahe: false  # RCT crops already preprocessed
+
+# Model
+model:
+  type: "patch_transformer"  # Use successful architecture
+  backbone: "resnet18"
+  pretrained: true
+  num_patches_h: 4  # More patches for better features
+  num_patches_w: 4
+  patch_size: 56  # 224 / 4 = 56
+  transformer:
+    d_model: 256  # Smaller for single-tooth
+    nhead: 8
+    num_layers: 4  # Fewer layers
+    dim_feedforward: 1024
+    dropout: 0.1
+  dropout: 0.3
+
+# Training
+training:
+  epochs: 50
+  batch_size: 32  # Larger batch for small images
+  num_workers: 0  # Windows compatibility
+  pin_memory: true
+  
+  # Optimizer
+  optimizer:
+    type: "adamw"
+    lr: 0.001  # Increased from 3e-4
+    weight_decay: 0.01
+    betas: [0.9, 0.999]
+  
+  # Loss
+  loss:
+    type: "focal"  # Handle class imbalance
+    alpha: 0.25  # Less weight on healthy class
+    gamma: 2.0
+    pos_weight: 2.5  # Reduced from 4.2 (less aggressive)
+  
+  # Scheduler
+  scheduler:
+    type: "reduce_on_plateau"
+    mode: "max"
+    factor: 0.5
+    patience: 5
+    min_lr: 0.000001
+    metric: "val_f1"
+  
+  # Regularization
+  grad_clip: 1.0
+  label_smoothing: 0.1
+  mixup_alpha: 0.0  # No mixup for now
+  
+  # AMP
+  use_amp: true
+  
+  # Early Stopping
+  early_stopping:
+    patience: 10
+    metric: "val_f1"
+    mode: "max"
+
+# Validation
+validation:
+  interval: 1  # Validate every epoch
+  save_best: true
+  metric: "f1"
+
+# Logging
+logging:
+  use_wandb: false  # Set to true if you want WandB
+  log_interval: 10
+  save_predictions: true
+  
+# Checkpointing
+checkpointing:
+  save_freq: 5
+  keep_last_n: 3
+  save_best_only: false

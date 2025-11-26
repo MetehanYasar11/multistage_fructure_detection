@@ -1,0 +1,392 @@
+# Dental Fractured Instrument Detection - Configuration File
+# Project: Master Thesis - Panoramic X-ray Classification
+# Target: >80% Accuracy, Dice>0.84 (Benchmark: 2025 SOTA U2-Net)
+# Updated: October 28, 2025 - Task 3 Completed
+
+# Dataset Configuration
+data:
+  root_dir: "c:/Users/maspe/OneDrive/Masaüstü/masterthesis/Dataset_2021/Dataset_2021/Dataset"
+  fractured_dir: "Fractured"
+  healthy_dir: "Healthy"
+  split_file: "outputs/splits/train_val_test_split.json"
+  train_split: 0.70
+  val_split: 0.15
+  test_split: 0.15
+  random_seed: 42
+  
+  # Class understanding (CRITICAL)
+  # Fractured (label=1): Positive class - broken endodontic instruments
+  # Healthy (label=0): Hard negative examples - NO fractures (challenging negatives)
+  num_classes: 2
+  class_names: ["Healthy", "Fractured"]
+  
+  # Class weights for loss function (from actual split)
+  # Healthy: 2.125 (114 samples - hard negatives)
+  # Fractured: 0.654 (373 samples - positive class)
+  class_weights: [2.125, 0.654]
+  
+  # Class imbalance ratio: 3.27:1 (Fractured:Healthy)
+  # This is EXPECTED and reflects real-world rarity of fractures
+
+# Image Processing
+image:
+  # Panoramic X-ray sizes (preserve resolution - fractured instruments are small!)
+  # Original: 2824-2958 × 1435 pixels (~2:1 aspect ratio)
+  default_size: [1400, 2800]  # Height × Width (preserve ~2:1 ratio)
+  alternative_sizes:
+    - [1024, 2048]  # Smaller for memory constraints
+    - [1400, 2800]  # Full resolution (recommended)
+    - [1600, 3200]  # Higher if GPU memory allows
+  
+  # Legacy sizes for EfficientNet baseline
+  legacy_sizes: [512, 640, 768]  # Square crops (not recommended for panoramic)
+  
+  mean: [0.485, 0.456, 0.406]  # ImageNet pretrained stats
+  std: [0.229, 0.224, 0.225]
+  normalize: true
+  
+  # CLAHE preprocessing (CRITICAL - 72% brightness variance in Fractured class)
+  apply_clahe: true
+  clahe_clip_limit: 2.0
+  clahe_tile_grid_size: [8, 8]
+
+# Data Augmentation (Implemented in data/augmentation.py)
+augmentation:
+  train:
+    # Geometric augmentations (panoramic X-rays)
+    horizontal_flip: true
+    horizontal_flip_prob: 0.3
+    rotate_limit: 15  # ±15 degrees
+    rotate_prob: 0.5
+    
+    # Elastic transforms (dental anatomy realism)
+    elastic_transform: true
+    elastic_alpha: 50
+    elastic_sigma: 5
+    elastic_alpha_affine: 10
+    elastic_prob: 0.3
+    
+    grid_distortion: true
+    grid_num_steps: 5
+    grid_distort_limit: 0.2
+    grid_prob: 0.3
+    
+    # Intensity augmentations (handle brightness variance)
+    brightness_contrast: true
+    brightness_limit: 0.2
+    contrast_limit: 0.2
+    brightness_contrast_prob: 0.5
+    
+    gaussian_noise: true
+    gaussian_var_limit: [10.0, 30.0]
+    gaussian_prob: 0.3
+    
+    # Advanced augmentations (apply in training loop)
+    mixup_enabled: true
+    mixup_alpha: 0.3
+    mixup_prob: 0.3
+    
+    cutmix_enabled: true
+    cutmix_alpha: 1.0
+    cutmix_prob: 0.3
+    
+  val:
+    # Validation: CLAHE + Resize + Normalize only
+    clahe_only: true
+    
+  test:
+    # Test-Time Augmentation (TTA)
+    tta_enabled: true
+    tta_variants: 4  # Original, H-flip, ±5° rotation
+
+# Training Configuration
+training:
+  # Basic settings
+  epochs: 50
+  batch_size: 6  # Optimal for RTX 5070 Ti 16GB (tested: bs=8 works, bs=6 is safe)
+  num_workers: 4
+  seed: 42
+  
+  # Optimizer
+  optimizer:
+    name: "adamw"
+    lr: 1e-4
+    weight_decay: 0.01
+    betas: [0.9, 0.999]
+  
+  # Learning rate scheduler
+  scheduler:
+    name: "cosine"  # Options: cosine, reduce_on_plateau, step, none
+    min_lr: 1e-6
+    # For reduce_on_plateau
+    factor: 0.5
+    patience: 5
+    # For step
+    step_size: 10
+    gamma: 0.1
+  
+  # Loss function
+  loss_function: "combined"  # Options: bce, focal, combined, dice, dice_bce
+  
+  # Mixed precision training (AMP)
+  use_amp: true
+  
+  # Gradient clipping
+  gradient_clip: 1.0
+  
+  # Early stopping
+  early_stopping_patience: 15
+  early_stopping_delta: 0.001
+  
+  # Checkpointing
+  save_every: 5  # Save checkpoint every N epochs
+  
+  # WandB logging
+  use_wandb: false  # Set to true to enable
+  wandb_project: "dental-fracture-detection"
+  wandb_entity: null  # Your wandb username
+  
+  # Resume training
+  resume: false
+  resume_checkpoint: null  # Path to checkpoint
+
+# Model Configuration
+model:
+  # Choose model: efficientnet or patch_transformer
+  name: "patch_transformer"  # or "efficientnet" for baseline
+  
+  # EfficientNet settings
+  backbone: "efficientnet_b0"
+  
+  # Patch Transformer settings
+  patch_size: 100
+  size: "base"  # Options: tiny, small, base, large
+  aggregation: "max"  # Options: max, mean, attention
+  
+  # Common settings
+  num_classes: 1  # Binary classification (sigmoid output)
+  pretrained: true
+  dropout: 0.3
+
+# Model Architectures (Legacy - for reference)
+models:
+  baseline:
+    name: "efficientnet_b0"
+    pretrained: true
+    dropout: 0.3
+    
+  u2net:
+    name: "u2net"
+    pretrained: false
+    in_channels: 3
+    out_channels: 2
+    
+  swin_transformer:
+    name: "swin_tiny_patch4_window7_224"
+    pretrained: true
+    dropout: 0.3
+    drop_path_rate: 0.1
+    
+  yolo_hybrid:
+    name: "yolov8n-cls"
+    pretrained: true
+    
+  convnext_lstm:
+    name: "convnext_tiny"
+    pretrained: true
+    lstm_hidden: 256
+    lstm_layers: 2
+    dropout: 0.3
+
+# Training Configuration
+training:
+  # Baseline configuration (EfficientNet-B0)
+  baseline:
+    model: "efficientnet_b0"
+    batch_size: 16
+    learning_rate: 0.0001
+    image_size: 512
+    dropout: 0.3
+  
+  # Improved configuration (640×640)
+  improved:
+    model: "efficientnet_b0"
+    batch_size: 16
+    learning_rate: 0.0001
+    image_size: 640
+    dropout: 0.3
+  
+  # U2-Net configuration (SOTA benchmark)
+  u2net:
+    model: "u2net"
+    encoder: "resnet34"
+    batch_size: 8  # Memory intensive
+    learning_rate: 0.0005
+    image_size: 640
+  
+  # Grid Search Parameters (for WandB sweeps)
+  grid_search:
+    batch_sizes: [8, 16, 32]
+    learning_rates: [0.0001, 0.0005, 0.001]
+    image_sizes: [512, 640, 768]
+    dropout_rates: [0.2, 0.3, 0.5]
+    
+  # Weighted Random Sampler (handle class imbalance)
+  weighted_sampling: true
+  
+  # Fixed Parameters
+  num_epochs: 100
+  early_stopping_patience: 15
+  gradient_clip_val: 1.0
+  
+  # Mixed Precision (MANDATORY for RTX 5070 Ti - 2x speedup)
+  mixed_precision: true
+  amp_enabled: true
+  
+  # Loss Functions (Implemented in training/losses.py)
+  loss:
+    type: "combined"  # BCE + Focal Loss weighted combination
+    
+    # Focal Loss parameters (handle class imbalance)
+    focal_alpha: 0.25  # More weight to Fractured (positive) class
+    focal_gamma: 2.0   # Focus on hard examples
+    
+    # Combined loss weights
+    bce_weight: 0.5    # BCE contribution
+    focal_weight: 0.5  # Focal Loss contribution
+    
+    # Label smoothing (prevent overconfidence)
+    label_smoothing: 0.1  # 0 → 0.1, 1 → 0.9
+    
+    # Alternative losses (for experimentation)
+    # type: "dice_bce"  # Dice + BCE for segmentation-style
+    # dice_weight: 0.5
+    # bce_weight: 0.5
+    
+  # Optimizer Configuration
+  optimizer:
+    type: "adamw"  # Primary optimizer
+    adamw:
+      betas: [0.9, 0.999]
+      eps: 1.0e-08
+      weight_decay: 0.01
+    
+    # Alternative: SGD
+    sgd:
+      momentum: 0.9
+      nesterov: true
+      weight_decay: 0.01
+    
+  # Learning Rate Scheduler
+  scheduler:
+    type: "cosine_warmup"  # CosineAnnealingWarmRestarts
+    warmup_epochs: 5
+    T_0: 10        # First restart epoch
+    T_mult: 2      # Period multiplication
+    eta_min: 1.0e-06
+    
+    # Alternative: ReduceLROnPlateau
+    reduce_on_plateau:
+      mode: "max"
+      factor: 0.5
+      patience: 5
+      min_lr: 1.0e-06
+
+# Cross Validation
+cross_validation:
+  enabled: true
+  n_folds: 5
+  stratified: true
+
+# Ensemble Configuration
+ensemble:
+  enabled: true
+  strategy: "weighted_voting"  # Options: soft_voting, weighted_voting, stacking
+  models_to_ensemble: ["efficientnet_b0", "swin_tiny", "u2net"]
+  weights: [0.3, 0.4, 0.3]  # Will be optimized based on validation
+
+# Evaluation Metrics
+metrics:
+  # PRIMARY GOALS (from CONTINUATION_PROMPT)
+  primary: "f1_score"
+  targets:
+    accuracy: 0.80      # >80%
+    dice_score: 0.84    # >0.84 (match U2-Net 2025 SOTA)
+    f1_score: 0.80      # >0.80
+    precision: 0.85     # >85% (minimize false positives - CRITICAL!)
+    recall: 0.75        # >75% (detect most fractured cases)
+    auc_roc: 0.90       # >0.90
+  
+  # Metrics to track
+  track:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1_score"
+    - "roc_auc"
+    - "dice_coefficient"
+    - "iou"
+    - "confusion_matrix"
+    - "classification_report"
+  
+  # Class-specific metrics
+  per_class: true
+  
+  # Confusion matrix
+  confusion_matrix: true
+  classification_report: true
+
+# WandB Configuration
+wandb:
+  project: "dental-fractured-instrument-detection"
+  entity: null  # Set your wandb username
+  log_model: true
+  log_gradients: true
+  log_images: 20
+  save_code: true
+
+# Checkpointing
+checkpoint:
+  save_dir: "checkpoints"
+  monitor: "val_f1_score"
+  mode: "max"
+  save_top_k: 3
+  save_last: true
+
+# Logging
+logging:
+  log_dir: "logs"
+  tensorboard: true
+  log_every_n_steps: 10
+
+# Reproducibility
+seed: 42
+deterministic: true
+benchmark: false  # Set true for faster training if input sizes are fixed
+
+# Hardware (RTX 5070 Ti Blackwell sm_120 Optimization)
+hardware:
+  device: "cuda"
+  gpu_name: "NVIDIA GeForce RTX 5070 Ti"
+  compute_capability: "sm_120"
+  vram_gb: 16
+  
+  # DataLoader optimization
+  num_workers: 8           # 8 cores for data loading
+  pin_memory: true         # Faster CPU-GPU transfer
+  prefetch_factor: 2       # Prefetch batches
+  persistent_workers: true # Keep workers alive
+  
+  # Batch size limits (640×640 images)
+  max_batch_size: 32       # 16GB VRAM limit
+  recommended_batch_size: 16
+  
+  # Memory optimization
+  gradient_checkpointing: false  # Enable if OOM with U2-Net
+
+# Paths
+paths:
+  output_dir: "outputs"
+  models_dir: "saved_models"
+  figures_dir: "figures"
+  results_dir: "results"

@@ -1,0 +1,13 @@
+{
+  "original_image": "0151.jpg",
+  "tooth_index": 2,
+  "bbox": {
+    "x_min": 1102.0,
+    "y_min": 937.0,
+    "x_max": 1189.0,
+    "y_max": 1166.0
+  },
+  "confidence": 0.6733525395393372,
+  "has_fracture": false,
+  "fracture_lines_in_bbox": []
+}
