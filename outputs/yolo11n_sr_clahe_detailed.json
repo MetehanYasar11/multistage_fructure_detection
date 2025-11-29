@@ -1,0 +1,27 @@
+{
+  "model": "YOLOv11n",
+  "preprocessing": "SR+CLAHE",
+  "test_accuracy": 0.8399503827095032,
+  "top5_accuracy": 1.0,
+  "model_path": "runs/sr_clahe_models/yolo11n_sr_clahe/weights/best.pt",
+  "sensitivity_fractured": 0.8097826086956522,
+  "specificity_fractured": 0.8488745980707395,
+  "recall_healthy": 0.8488745980707395,
+  "confusion_matrix": [
+    [
+      149.0,
+      35.0,
+      0.0
+    ],
+    [
+      94.0,
+      528.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0
+    ]
+  ]
+}
