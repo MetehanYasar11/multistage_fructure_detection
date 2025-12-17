@@ -1,0 +1,112 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment
+.env
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Dataset folders (too large)
+auto_labeled_crops/
+auto_labeled_crops_sr_clahe/
+rct_cls_dataset/
+rct_sr_clahe_dataset/
+manual_annotated_crops/
+manual_annotated_crops_sr_clahe/
+
+# Model checkpoints (too large)
+*.pt
+*.pth
+*.onnx
+*.weights
+checkpoints/
+detectors/
+
+# Training outputs (too large)
+runs/
+outputs/
+
+# Data files
+data/
+notebooks/
+
+# Cache files
+*.cache
+*.pkl
+*.pickle
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Old tries - don't push
+*_old.py
+*_backup.py
+*_test.py
+old_tries/
+sweats_of_climbing/
+labelImg/
+manual_annotated_crops_sr_clahe_fixed/
+
+# Cleanup and statistics scripts
+cleanup_repo.py
+generate_repo_stats.py
+generate_presentation.py
+visualize_repo_stats.py
+CLEANUP_REPORT.md
+PRODUCTION_README.md
+REPO_STATISTICS.json
+
+# Old evaluation scripts
+compare_full_pipeline.py
+compare_stage1_detectors.py
+evaluate_sr_clahe_nano.py
+test_sr_clahe_new_data.py
+visualize_new_data.py
+visualize_predictions_correct.py
+visualize_risk_zones.py
+train_yolo11n_sr_clahe.py
+rct_crop_annotator.py
+preprocess_sr_clahe.py
+
+# Keep only essential files for prototype
