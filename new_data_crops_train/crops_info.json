@@ -1,0 +1,808 @@
+[
+  {
+    "image": "962144_1.jpg",
+    "crop": "962144_1_crop09_new_train.jpg",
+    "bbox": [
+      1717,
+      874,
+      1805,
+      1090
+    ],
+    "confidence": 0.6229894757270813,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "962144_1.jpg",
+    "crop": "962144_1_crop10_new_train.jpg",
+    "bbox": [
+      1671,
+      490,
+      1775,
+      763
+    ],
+    "confidence": 0.473239541053772,
+    "label": "fractured",
+    "has_fracture_line": true
+  },
+  {
+    "image": "962144_1.jpg",
+    "crop": "962144_1_crop12_new_train.jpg",
+    "bbox": [
+      832,
+      811,
+      1040,
+      1015
+    ],
+    "confidence": 0.3544788658618927,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "962144_1.jpg",
+    "crop": "962144_1_crop13_new_train.jpg",
+    "bbox": [
+      1793,
+      891,
+      1869,
+      1044
+    ],
+    "confidence": 0.33651289343833923,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1264116_1.jpg",
+    "crop": "1264116_1_crop01_new_train.jpg",
+    "bbox": [
+      993,
+      868,
+      1106,
+      1090
+    ],
+    "confidence": 0.5639751553535461,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1264116_1.jpg",
+    "crop": "1264116_1_crop04_new_train.jpg",
+    "bbox": [
+      1065,
+      849,
+      1161,
+      1157
+    ],
+    "confidence": 0.35212498903274536,
+    "label": "fractured",
+    "has_fracture_line": true
+  },
+  {
+    "image": "1305544.jpg",
+    "crop": "1305544_crop06_new_train.jpg",
+    "bbox": [
+      1135,
+      912,
+      1232,
+      1326
+    ],
+    "confidence": 0.628923237323761,
+    "label": "fractured",
+    "has_fracture_line": true
+  },
+  {
+    "image": "1305544.jpg",
+    "crop": "1305544_crop07_new_train.jpg",
+    "bbox": [
+      982,
+      956,
+      1108,
+      1219
+    ],
+    "confidence": 0.5229688286781311,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1260840_1.jpg",
+    "crop": "1260840_1_crop14_new_train.jpg",
+    "bbox": [
+      930,
+      838,
+      1095,
+      1080
+    ],
+    "confidence": 0.5737861394882202,
+    "label": "fractured",
+    "has_fracture_line": true
+  },
+  {
+    "image": "1260840_1.jpg",
+    "crop": "1260840_1_crop16_new_train.jpg",
+    "bbox": [
+      1038,
+      845,
+      1130,
+      1105
+    ],
+    "confidence": 0.5575067400932312,
+    "label": "fractured",
+    "has_fracture_line": true
+  },
+  {
+    "image": "1260840_1.jpg",
+    "crop": "1260840_1_crop17_new_train.jpg",
+    "bbox": [
+      1126,
+      486,
+      1205,
+      838
+    ],
+    "confidence": 0.5387275218963623,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1260840_1.jpg",
+    "crop": "1260840_1_crop19_new_train.jpg",
+    "bbox": [
+      1209,
+      534,
+      1261,
+      844
+    ],
+    "confidence": 0.329364538192749,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1289583_1.jpg",
+    "crop": "1289583_1_crop01_new_train.jpg",
+    "bbox": [
+      1794,
+      462,
+      1953,
+      832
+    ],
+    "confidence": 0.6512138843536377,
+    "label": "fractured",
+    "has_fracture_line": true
+  },
+  {
+    "image": "1304684.jpg",
+    "crop": "1304684_crop08_new_train.jpg",
+    "bbox": [
+      1808,
+      886,
+      1923,
+      1144
+    ],
+    "confidence": 0.6826753616333008,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1304684.jpg",
+    "crop": "1304684_crop10_new_train.jpg",
+    "bbox": [
+      1591,
+      427,
+      1685,
+      874
+    ],
+    "confidence": 0.6642774939537048,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1304684.jpg",
+    "crop": "1304684_crop12_new_train.jpg",
+    "bbox": [
+      1057,
+      531,
+      1162,
+      854
+    ],
+    "confidence": 0.6110270619392395,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1304684.jpg",
+    "crop": "1304684_crop15_new_train.jpg",
+    "bbox": [
+      1105,
+      802,
+      1190,
+      1226
+    ],
+    "confidence": 0.5425094962120056,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1304684.jpg",
+    "crop": "1304684_crop16_new_train.jpg",
+    "bbox": [
+      990,
+      515,
+      1072,
+      861
+    ],
+    "confidence": 0.5105389356613159,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1304684.jpg",
+    "crop": "1304684_crop21_new_train.jpg",
+    "bbox": [
+      1735,
+      506,
+      1812,
+      858
+    ],
+    "confidence": 0.40357258915901184,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1304684.jpg",
+    "crop": "1304684_crop22_new_train.jpg",
+    "bbox": [
+      1787,
+      885,
+      1836,
+      1165
+    ],
+    "confidence": 0.3634070158004761,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1304684.jpg",
+    "crop": "1304684_crop23_new_train.jpg",
+    "bbox": [
+      1854,
+      565,
+      1936,
+      823
+    ],
+    "confidence": 0.3548658788204193,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1304684.jpg",
+    "crop": "1304684_crop24_new_train.jpg",
+    "bbox": [
+      1667,
+      504,
+      1738,
+      874
+    ],
+    "confidence": 0.35398390889167786,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1304684.jpg",
+    "crop": "1304684_crop25_new_train.jpg",
+    "bbox": [
+      1688,
+      523,
+      1731,
+      852
+    ],
+    "confidence": 0.3348602056503296,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1304684.jpg",
+    "crop": "1304684_crop26_new_train.jpg",
+    "bbox": [
+      1686,
+      835,
+      1768,
+      1212
+    ],
+    "confidence": 0.3029564917087555,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "956246_1.jpg",
+    "crop": "956246_1_crop07_new_train.jpg",
+    "bbox": [
+      1829,
+      733,
+      1999,
+      1016
+    ],
+    "confidence": 0.7266501784324646,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "956246_1.jpg",
+    "crop": "956246_1_crop09_new_train.jpg",
+    "bbox": [
+      1056,
+      687,
+      1148,
+      1089
+    ],
+    "confidence": 0.7213749289512634,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "956246_1.jpg",
+    "crop": "956246_1_crop10_new_train.jpg",
+    "bbox": [
+      1914,
+      704,
+      2134,
+      1001
+    ],
+    "confidence": 0.7112977504730225,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "956246_1.jpg",
+    "crop": "956246_1_crop12_new_train.jpg",
+    "bbox": [
+      993,
+      709,
+      1062,
+      1027
+    ],
+    "confidence": 0.6395713686943054,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "956246_1.jpg",
+    "crop": "956246_1_crop13_new_train.jpg",
+    "bbox": [
+      1084,
+      273,
+      1167,
+      718
+    ],
+    "confidence": 0.6030369997024536,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "956246_1.jpg",
+    "crop": "956246_1_crop14_new_train.jpg",
+    "bbox": [
+      1823,
+      743,
+      1881,
+      1059
+    ],
+    "confidence": 0.6008902192115784,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "956246_1.jpg",
+    "crop": "956246_1_crop16_new_train.jpg",
+    "bbox": [
+      1809,
+      405,
+      1893,
+      676
+    ],
+    "confidence": 0.5054810047149658,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "956246_1.jpg",
+    "crop": "956246_1_crop17_new_train.jpg",
+    "bbox": [
+      1852,
+      376,
+      1922,
+      672
+    ],
+    "confidence": 0.47024694085121155,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "956246_1.jpg",
+    "crop": "956246_1_crop19_new_train.jpg",
+    "bbox": [
+      952,
+      417,
+      1031,
+      626
+    ],
+    "confidence": 0.4528263509273529,
+    "label": "fractured",
+    "has_fracture_line": true
+  },
+  {
+    "image": "956246_1.jpg",
+    "crop": "956246_1_crop20_new_train.jpg",
+    "bbox": [
+      990,
+      381,
+      1074,
+      653
+    ],
+    "confidence": 0.44994229078292847,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "956246_1.jpg",
+    "crop": "956246_1_crop21_new_train.jpg",
+    "bbox": [
+      848,
+      402,
+      921,
+      606
+    ],
+    "confidence": 0.44711753726005554,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "956246_1.jpg",
+    "crop": "956246_1_crop22_new_train.jpg",
+    "bbox": [
+      882,
+      369,
+      943,
+      614
+    ],
+    "confidence": 0.44611692428588867,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "956246_1.jpg",
+    "crop": "956246_1_crop23_new_train.jpg",
+    "bbox": [
+      1816,
+      745,
+      1895,
+      1067
+    ],
+    "confidence": 0.44118788838386536,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "956246_1.jpg",
+    "crop": "956246_1_crop24_new_train.jpg",
+    "bbox": [
+      1803,
+      364,
+      1907,
+      693
+    ],
+    "confidence": 0.4020217955112457,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "956246_1.jpg",
+    "crop": "956246_1_crop25_new_train.jpg",
+    "bbox": [
+      994,
+      376,
+      1092,
+      671
+    ],
+    "confidence": 0.34668752551078796,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1279744_1.jpg",
+    "crop": "1279744_1_crop04_new_train.jpg",
+    "bbox": [
+      994,
+      514,
+      1117,
+      761
+    ],
+    "confidence": 0.39872878789901733,
+    "label": "fractured",
+    "has_fracture_line": true
+  },
+  {
+    "image": "1304332_1.jpg",
+    "crop": "1304332_1_crop11_new_train.jpg",
+    "bbox": [
+      1110,
+      566,
+      1172,
+      851
+    ],
+    "confidence": 0.5567728877067566,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1304332_1.jpg",
+    "crop": "1304332_1_crop12_new_train.jpg",
+    "bbox": [
+      1030,
+      517,
+      1096,
+      852
+    ],
+    "confidence": 0.41825899481773376,
+    "label": "fractured",
+    "has_fracture_line": true
+  },
+  {
+    "image": "1304332_1.jpg",
+    "crop": "1304332_1_crop13_new_train.jpg",
+    "bbox": [
+      1016,
+      509,
+      1100,
+      864
+    ],
+    "confidence": 0.3580746054649353,
+    "label": "fractured",
+    "has_fracture_line": true
+  },
+  {
+    "image": "873498_1.jpg",
+    "crop": "873498_1_crop03_new_train.jpg",
+    "bbox": [
+      1623,
+      437,
+      1768,
+      802
+    ],
+    "confidence": 0.7190346717834473,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1298119_1.jpg",
+    "crop": "1298119_1_crop04_new_train.jpg",
+    "bbox": [
+      772,
+      787,
+      1109,
+      1080
+    ],
+    "confidence": 0.75400710105896,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1298119_1.jpg",
+    "crop": "1298119_1_crop13_new_train.jpg",
+    "bbox": [
+      1832,
+      480,
+      1968,
+      788
+    ],
+    "confidence": 0.5287961959838867,
+    "label": "fractured",
+    "has_fracture_line": true
+  },
+  {
+    "image": "1298119_1.jpg",
+    "crop": "1298119_1_crop16_new_train.jpg",
+    "bbox": [
+      1816,
+      479,
+      1932,
+      801
+    ],
+    "confidence": 0.4008393883705139,
+    "label": "fractured",
+    "has_fracture_line": true
+  },
+  {
+    "image": "1298119_1.jpg",
+    "crop": "1298119_1_crop18_new_train.jpg",
+    "bbox": [
+      1302,
+      508,
+      1368,
+      897
+    ],
+    "confidence": 0.35157105326652527,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1298119_1.jpg",
+    "crop": "1298119_1_crop19_new_train.jpg",
+    "bbox": [
+      1311,
+      518,
+      1360,
+      894
+    ],
+    "confidence": 0.3453299105167389,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1142690_1.jpg",
+    "crop": "1142690_1_crop04_new_train.jpg",
+    "bbox": [
+      1078,
+      921,
+      1161,
+      1222
+    ],
+    "confidence": 0.7277536988258362,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1142690_1.jpg",
+    "crop": "1142690_1_crop06_new_train.jpg",
+    "bbox": [
+      1004,
+      923,
+      1144,
+      1175
+    ],
+    "confidence": 0.6401034593582153,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1142690_1.jpg",
+    "crop": "1142690_1_crop07_new_train.jpg",
+    "bbox": [
+      1743,
+      522,
+      1926,
+      862
+    ],
+    "confidence": 0.630803108215332,
+    "label": "fractured",
+    "has_fracture_line": true
+  },
+  {
+    "image": "1142690_1.jpg",
+    "crop": "1142690_1_crop12_new_train.jpg",
+    "bbox": [
+      1591,
+      912,
+      1672,
+      1288
+    ],
+    "confidence": 0.4903087317943573,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1298885_1.jpg",
+    "crop": "1298885_1_crop00_new_train.jpg",
+    "bbox": [
+      990,
+      774,
+      1241,
+      1187
+    ],
+    "confidence": 0.7476202249526978,
+    "label": "fractured",
+    "has_fracture_line": true
+  },
+  {
+    "image": "1159540.jpg",
+    "crop": "1159540_crop09_new_train.jpg",
+    "bbox": [
+      846,
+      855,
+      1058,
+      1135
+    ],
+    "confidence": 0.7160214781761169,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1159540.jpg",
+    "crop": "1159540_crop13_new_train.jpg",
+    "bbox": [
+      1099,
+      838,
+      1255,
+      1216
+    ],
+    "confidence": 0.6485548615455627,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1159540.jpg",
+    "crop": "1159540_crop15_new_train.jpg",
+    "bbox": [
+      1888,
+      841,
+      2085,
+      1137
+    ],
+    "confidence": 0.6446715593338013,
+    "label": "fractured",
+    "has_fracture_line": true
+  },
+  {
+    "image": "1159540.jpg",
+    "crop": "1159540_crop17_new_train.jpg",
+    "bbox": [
+      1934,
+      824,
+      2115,
+      1099
+    ],
+    "confidence": 0.5977626442909241,
+    "label": "fractured",
+    "has_fracture_line": true
+  },
+  {
+    "image": "1159540.jpg",
+    "crop": "1159540_crop18_new_train.jpg",
+    "bbox": [
+      859,
+      848,
+      1104,
+      1147
+    ],
+    "confidence": 0.5863803625106812,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1159540.jpg",
+    "crop": "1159540_crop19_new_train.jpg",
+    "bbox": [
+      936,
+      858,
+      1069,
+      1134
+    ],
+    "confidence": 0.5782214403152466,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1159540.jpg",
+    "crop": "1159540_crop20_new_train.jpg",
+    "bbox": [
+      1064,
+      880,
+      1178,
+      1136
+    ],
+    "confidence": 0.5381582379341125,
+    "label": "healthy",
+    "has_fracture_line": false
+  },
+  {
+    "image": "1159540.jpg",
+    "crop": "1159540_crop23_new_train.jpg",
+    "bbox": [
+      1897,
+      826,
+      2124,
+      1121
+    ],
+    "confidence": 0.4110549986362457,
+    "label": "fractured",
+    "has_fracture_line": true
+  }
+]

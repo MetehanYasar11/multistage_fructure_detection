@@ -1,0 +1,78 @@
+{
+  "train": {
+    "total": 45,
+    "fractured": [
+      "1279744_1_crop04_new_train.jpg",
+      "1298119_1_crop13_new_train.jpg",
+      "1289583_1_crop01_new_train.jpg",
+      "956246_1_crop19_new_train.jpg",
+      "1159540_crop17_new_train.jpg",
+      "1159540_crop15_new_train.jpg",
+      "1298885_1_crop00_new_train.jpg",
+      "1304332_1_crop13_new_train.jpg",
+      "1304332_1_crop12_new_train.jpg",
+      "1264116_1_crop04_new_train.jpg",
+      "1305544_crop06_new_train.jpg",
+      "1142690_1_crop07_new_train.jpg"
+    ],
+    "healthy": [
+      "956246_1_crop14_new_train.jpg",
+      "956246_1_crop17_new_train.jpg",
+      "1304684_crop08_new_train.jpg",
+      "956246_1_crop13_new_train.jpg",
+      "1304684_crop22_new_train.jpg",
+      "873498_1_crop03_new_train.jpg",
+      "956246_1_crop09_new_train.jpg",
+      "1304684_crop24_new_train.jpg",
+      "1260840_1_crop17_new_train.jpg",
+      "1304684_crop12_new_train.jpg",
+      "1159540_crop09_new_train.jpg",
+      "956246_1_crop07_new_train.jpg",
+      "1159540_crop18_new_train.jpg",
+      "956246_1_crop25_new_train.jpg",
+      "1304684_crop25_new_train.jpg",
+      "956246_1_crop12_new_train.jpg",
+      "1298119_1_crop19_new_train.jpg",
+      "1159540_crop13_new_train.jpg",
+      "956246_1_crop23_new_train.jpg",
+      "956246_1_crop10_new_train.jpg",
+      "1304684_crop16_new_train.jpg",
+      "1142690_1_crop04_new_train.jpg",
+      "1142690_1_crop12_new_train.jpg",
+      "962144_1_crop13_new_train.jpg",
+      "1264116_1_crop01_new_train.jpg",
+      "956246_1_crop24_new_train.jpg",
+      "956246_1_crop16_new_train.jpg",
+      "1260840_1_crop19_new_train.jpg",
+      "1305544_crop07_new_train.jpg",
+      "1304684_crop10_new_train.jpg",
+      "1159540_crop19_new_train.jpg",
+      "956246_1_crop21_new_train.jpg",
+      "1304684_crop15_new_train.jpg"
+    ]
+  },
+  "val": {
+    "total": 17,
+    "fractured": [
+      "1159540_crop23_new_train.jpg",
+      "1260840_1_crop16_new_train.jpg",
+      "1298119_1_crop16_new_train.jpg",
+      "962144_1_crop10_new_train.jpg",
+      "1260840_1_crop14_new_train.jpg"
+    ],
+    "healthy": [
+      "962144_1_crop09_new_train.jpg",
+      "1304684_crop26_new_train.jpg",
+      "956246_1_crop22_new_train.jpg",
+      "1159540_crop20_new_train.jpg",
+      "956246_1_crop20_new_train.jpg",
+      "1298119_1_crop04_new_train.jpg",
+      "1304684_crop21_new_train.jpg",
+      "1298119_1_crop18_new_train.jpg",
+      "962144_1_crop12_new_train.jpg",
+      "1142690_1_crop06_new_train.jpg",
+      "1304332_1_crop11_new_train.jpg",
+      "1304684_crop23_new_train.jpg"
+    ]
+  }
+}

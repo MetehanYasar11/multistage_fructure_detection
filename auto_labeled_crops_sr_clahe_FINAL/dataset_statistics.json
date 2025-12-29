@@ -1,0 +1,7 @@
+{
+  "total_crops": 1573,
+  "healthy": 1075,
+  "fractured": 498,
+  "original_dataset": "auto_labeled_crops_sr_clahe",
+  "new_crops_added": 45
+}

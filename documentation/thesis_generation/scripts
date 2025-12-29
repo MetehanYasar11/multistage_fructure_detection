@@ -1,0 +1,395 @@
+"""
+Integrate Key Visuals into Master Thesis Document
+
+This script identifies the most important visualizations and creates
+a visual integration guide for the thesis.
+"""
+
+import os
+from pathlib import Path
+from collections import defaultdict
+
+def categorize_visuals():
+    """Categorize all visual files by type and importance"""
+    
+    visuals = {
+        # CRITICAL - Must include in thesis
+        'confusion_matrices': [
+            'outputs/risk_zones_vit/stage2_gt_evaluation/stage2_confusion_matrix_gt.png',
+            'outputs/risk_zones_vit/stage2_gt_evaluation/stage2_evaluation_summary.png',
+            'runs/vit_sr_clahe_auto/confusion_matrix.png',
+            'runs/vit_classifier/confusion_matrix.png',
+            'runs/full_pipeline_validation/confusion_matrix.png',
+            'runs/class_balancing/class_weights/confusion_matrix.png',
+        ],
+        
+        # Training curves and metrics
+        'training_metrics': [
+            'runs/vit_classifier/training_history.png',
+            'runs/class_balancing/class_weights/results.png',
+            'runs/sr_clahe_models/yolo11n_sr_clahe_auto/results.png',
+        ],
+        
+        # Risk zone visualizations (examples)
+        'risk_zone_examples': [
+            'outputs/risk_zones_vit/0001_risk_zones.jpg',
+            'outputs/risk_zones_vit/0014_risk_zones.jpg',
+            'outputs/risk_zones_vit/0025_risk_zones.jpg',
+            'outputs/improved_risk_zones_v2/1069431_1_risk_zones.jpg',
+            'outputs/improved_risk_zones_v2/1142690_1_risk_zones.jpg',
+        ],
+        
+        # Pipeline optimization
+        'pipeline_optimization': [
+            'runs/pipeline_optimization/grid_search_heatmaps.png',
+            'runs/pipeline_optimization/top_10_configurations.png',
+            'runs/pipeline_optimization/sensitivity_vs_specificity.png',
+            'runs/pipeline_optimization/confidence_analysis.png',
+            'runs/pipeline_optimization/optimized_confusion_matrix.png',
+        ],
+        
+        # Preprocessing comparisons
+        'preprocessing': [
+            'outputs/sr_comparison_visualization.png',
+            'outputs/sr_detailed_steps.png',
+            'outputs/combined_clahe_gabor.png',
+        ],
+        
+        # Research overview
+        'research_overview': [
+            'outputs/repo_visualizations/repo_statistics_overview.png',
+            'outputs/repo_visualizations/research_timeline.png',
+            'outputs/repo_visualizations/experiments_breakdown.png',
+        ],
+        
+        # Stage 1 detector examples
+        'stage1_detection': [
+            'outputs/debug_detection_first_image.png',
+            'outputs/bbox_scale_analysis.png',
+        ],
+        
+        # Full pipeline validation examples
+        'full_pipeline_examples': [
+            'runs/full_pipeline_validation/visualizations/Fractured_0004_result.png',
+            'runs/full_pipeline_validation/visualizations/Fractured_0050_result.png',
+            'runs/full_pipeline_validation/visualizations/Healthy_0015_result.png',
+            'runs/full_pipeline_validation/visualizations/Healthy_0042_result.png',
+        ],
+        
+        # Screening system analysis
+        'screening_analysis': [
+            'runs/full_pipeline_validation/SCREENING_SYSTEM_ANALYSIS.png',
+            'runs/full_pipeline_validation/metrics_summary.png',
+        ],
+    }
+    
+    return visuals
+
+def generate_visual_integration_guide():
+    """Generate a guide for where to place each visual in the thesis"""
+    
+    visuals = categorize_visuals()
+    
+    guide = """
+# VISUAL INTEGRATION GUIDE FOR THESIS
+# =====================================
+
+This guide maps visuals to their appropriate thesis sections.
+Copy this to your thesis document and embed images accordingly.
+
+---
+
+## SECTION 6: EXPERIMENTS (Stage 2 Model Evolution)
+
+### Figure 6.1: ViT Classifier Training History
+**File:** runs/vit_classifier/training_history.png
+**Caption:** Training and validation curves for ViT-Small classifier showing convergence after 100 epochs. 
+Loss decreases steadily while accuracy improves, with minimal overfitting observed (train-val gap < 3%).
+
+### Figure 6.2: ViT Confusion Matrix (Training Test)
+**File:** runs/vit_classifier/confusion_matrix.png
+**Caption:** Confusion matrix for ViT-Small on training test set (231 crops). 
+Shows good performance but some false positives due to class imbalance.
+
+### Figure 6.3: Final Validation Confusion Matrix (50-Image Test)
+**File:** outputs/risk_zones_vit/stage2_gt_evaluation/stage2_confusion_matrix_gt.png
+**Caption:** Final validation confusion matrix on 50-image test (184 crops, 62 fractured, 122 healthy). 
+Accuracy: 84.78%, Precision: 72.37%, Recall: 88.71%, Specificity: 82.79%.
+High recall (88.71%) critical for clinical safety - minimizes missed fractures.
+
+### Figure 6.4: Final Validation Summary
+**File:** outputs/risk_zones_vit/stage2_gt_evaluation/stage2_evaluation_summary.png
+**Caption:** Comprehensive evaluation summary with confusion matrix and key metrics.
+TP:55, TN:101, FP:21, FN:7 demonstrates strong performance on challenging real-world test set.
+
+---
+
+## SECTION 7: CLASS IMBALANCE SOLUTIONS
+
+### Figure 7.1: Class Weights Results
+**File:** runs/class_balancing/class_weights/results.png
+**Caption:** Training metrics for weighted loss approach [0.73, 1.57]. 
+Shows improved recall (88.71% vs 38.9% baseline) while maintaining overall accuracy.
+
+### Figure 7.2: Weighted Loss Confusion Matrix
+**File:** runs/class_balancing/class_weights/confusion_matrix.png
+**Caption:** Confusion matrix showing balanced performance across both classes.
+Weighted loss (2.15× penalty for fractured) effectively addresses class imbalance.
+
+---
+
+## SECTION 4: PREPROCESSING EXPERIMENTS
+
+### Figure 4.1: Super-Resolution Comparison
+**File:** outputs/sr_comparison_visualization.png
+**Caption:** Visual comparison of original vs 4× super-resolution (bicubic interpolation).
+SR enhances fine details and fracture patterns in low-resolution dental X-rays.
+
+### Figure 4.2: SR+CLAHE Pipeline Steps
+**File:** outputs/sr_detailed_steps.png
+**Caption:** Step-by-step visualization of SR+CLAHE preprocessing pipeline.
+Shows progressive enhancement from original image to final preprocessed result.
+
+### Figure 4.3: CLAHE+Gabor Combination
+**File:** outputs/combined_clahe_gabor.png
+**Caption:** Comparison of CLAHE enhancement with Gabor filter augmentation.
+Note: Gabor filters caused catastrophic failure (~30% accuracy) and were abandoned.
+
+---
+
+## SECTION 8: PIPELINE OPTIMIZATION
+
+### Figure 8.1: Grid Search Heatmaps
+**File:** runs/pipeline_optimization/grid_search_heatmaps.png
+**Caption:** Grid search results across 120 configurations (10 confidence thresholds × 12 voting ratios).
+Shows optimal performance at conf≥0.75 AND count≥2 (combined threshold strategy).
+
+### Figure 8.2: Top 10 Configurations
+**File:** runs/pipeline_optimization/top_10_configurations.png
+**Caption:** Performance comparison of top 10 parameter combinations.
+Highlights trade-offs between sensitivity (recall) and specificity across configurations.
+
+### Figure 8.3: Sensitivity vs Specificity
+**File:** runs/pipeline_optimization/sensitivity_vs_specificity.png
+**Caption:** ROC-style analysis showing 8× specificity improvement (7.69% → 61.54%).
+Demonstrates effectiveness of combined threshold optimization strategy.
+
+### Figure 8.4: Confidence Threshold Analysis
+**File:** runs/pipeline_optimization/confidence_analysis.png
+**Caption:** Impact of confidence threshold on detection quality and false positive rate.
+Higher thresholds reduce false alarms but may miss subtle fractures.
+
+### Figure 8.5: Optimized Confusion Matrix
+**File:** runs/pipeline_optimization/optimized_confusion_matrix.png
+**Caption:** Final confusion matrix after pipeline optimization.
+Shows dramatic improvement in specificity while maintaining high sensitivity.
+
+---
+
+## SECTION 10: RESULTS & DISCUSSION
+
+### Figure 10.1: Full Pipeline Validation Confusion Matrix
+**File:** runs/full_pipeline_validation/confusion_matrix.png
+**Caption:** Complete pipeline evaluation on 50-image test.
+Crop-level: 84.78% accuracy, Image-level: 89.47% accuracy.
+
+### Figure 10.2: Screening System Analysis
+**File:** runs/full_pipeline_validation/SCREENING_SYSTEM_ANALYSIS.png
+**Caption:** Analysis of system's screening capability (image-level classification).
+Shows high image-level accuracy (89.47%) suitable for triage applications.
+
+### Figure 10.3: Metrics Summary Dashboard
+**File:** runs/full_pipeline_validation/metrics_summary.png
+**Caption:** Comprehensive metrics dashboard showing crop-level and image-level performance.
+Includes precision, recall, specificity, F1-score across all evaluation levels.
+
+---
+
+## SECTION 9: FINAL SYSTEM ARCHITECTURE (Risk Zone Examples)
+
+### Figure 9.1: Risk Zone Example - Fractured RCT (RED)
+**File:** outputs/risk_zones_vit/0001_risk_zones.jpg
+**Caption:** Example of RED risk zone (Fractured > 60% confidence).
+System correctly flags high-risk RCT for immediate clinician review.
+
+### Figure 9.2: Risk Zone Example - Multiple RCTs
+**File:** outputs/risk_zones_vit/0014_risk_zones.jpg
+**Caption:** Image with multiple RCTs showing mixed risk zones (GREEN/YELLOW/RED).
+Demonstrates system's ability to assess each RCT independently.
+
+### Figure 9.3: Risk Zone Example - Improved Thresholds (conf=0.5)
+**File:** outputs/improved_risk_zones_v2/1069431_1_risk_zones.jpg
+**Caption:** Risk zone visualization with improved thresholds (H>80%, F>80%).
+More conservative classification reduces false positives for deployment.
+
+### Figure 9.4: Risk Zone Example - Professor Test Set
+**File:** outputs/improved_risk_zones_v2/1142690_1_risk_zones.jpg
+**Caption:** Example from 20-image professor test (new_data/test).
+Shows system generalization to different image source (conf=0.5).
+
+---
+
+## SECTION 3: STAGE 1 RCT DETECTION
+
+### Figure 3.1: Stage 1 Detection Example
+**File:** outputs/debug_detection_first_image.png
+**Caption:** YOLOv11x RCT detection example showing bounding boxes on panoramic X-ray.
+Detected RCTs are cropped and passed to Stage 2 classifier.
+
+### Figure 3.2: Bounding Box Scale Analysis
+**File:** outputs/bbox_scale_analysis.png
+**Caption:** Analysis of bbox_scale parameter (2.2× expansion around RCT center).
+Larger scale captures surrounding context critical for fracture detection.
+
+---
+
+## SECTION 10: FULL PIPELINE EXAMPLES (Qualitative Results)
+
+### Figure 10.4: Fractured RCT Detection Example 1
+**File:** runs/full_pipeline_validation/visualizations/Fractured_0004_result.png
+**Caption:** Full pipeline result showing successful fracture detection.
+RCT correctly classified as fractured with high confidence.
+
+### Figure 10.5: Fractured RCT Detection Example 2
+**File:** runs/full_pipeline_validation/visualizations/Fractured_0050_result.png
+**Caption:** Another successful fracture detection example.
+System identifies subtle vertical fracture line.
+
+### Figure 10.6: Healthy RCT Example 1
+**File:** runs/full_pipeline_validation/visualizations/Healthy_0015_result.png
+**Caption:** Healthy RCT correctly classified with no false alarm.
+High confidence (>80%) in healthy classification.
+
+### Figure 10.7: Healthy RCT Example 2
+**File:** runs/full_pipeline_validation/visualizations/Healthy_0042_result.png
+**Caption:** Another healthy RCT example showing system's specificity.
+Avoids false positives on clearly healthy tooth structures.
+
+---
+
+## SECTION 1: INTRODUCTION (Research Overview)
+
+### Figure 1.1: Research Statistics Overview
+**File:** outputs/repo_visualizations/repo_statistics_overview.png
+**Caption:** Repository statistics showing project scale: 45+ Python scripts, 
+50+ experiments, 15,000+ lines of code across 12 months of research.
+
+### Figure 1.2: Research Timeline
+**File:** outputs/repo_visualizations/research_timeline.png
+**Caption:** Project timeline showing key milestones from data collection through deployment.
+Highlights iterative development process and major breakthroughs.
+
+### Figure 1.3: Experiments Breakdown
+**File:** outputs/repo_visualizations/experiments_breakdown.png
+**Caption:** Distribution of experiments across categories: preprocessing, architecture,
+class imbalance, pipeline optimization, and validation.
+
+---
+
+## EMBEDDING INSTRUCTIONS
+
+For each figure:
+
+1. **In Microsoft Word:**
+   - Go to appropriate section
+   - Insert > Pictures > Browse
+   - Select PNG/JPG file
+   - Right-click image > Wrap Text > In Line with Text
+   - Resize to fit page width (usually 6.5" for 1" margins)
+   - Add caption: References > Insert Caption > Figure
+   - Number automatically (e.g., Figure 6.1, Figure 6.2, etc.)
+
+2. **Figure Quality:**
+   - PNG files: Use original resolution (no compression)
+   - JPG files: Acceptable for risk zone visualizations
+   - Confusion matrices: High priority (use PNG)
+   - Training curves: Medium priority (use PNG)
+   - Examples: Lower priority (JPG okay)
+
+3. **Cross-References:**
+   - In text: "As shown in Figure 6.1..."
+   - Insert cross-reference: References > Cross-reference > Figure
+   - Update fields before final PDF export (Ctrl+A, F9)
+
+4. **Priority Order:**
+   1. CRITICAL: All confusion matrices (Section 6, 7, 8, 10)
+   2. HIGH: Training curves, pipeline optimization charts (Section 4, 6, 8)
+   3. MEDIUM: Risk zone examples (Section 9, 10)
+   4. LOW: Full pipeline qualitative examples (Section 10)
+   5. OPTIONAL: Research overview charts (Section 1)
+
+---
+
+## FINAL CHECKLIST
+
+Before submission:
+- ✓ All critical figures embedded
+- ✓ Figure numbers sequential within each section
+- ✓ All captions complete and descriptive
+- ✓ Cross-references working (F9 to update)
+- ✓ Image quality acceptable (no pixelation)
+- ✓ File size reasonable (<50MB total document)
+- ✓ PDF export preserves image quality
+
+---
+
+## NOTES
+
+- Total figures recommended: ~25-30 (avoid overwhelming reader)
+- Each major section should have 2-5 key figures
+- Balance quantitative (charts) and qualitative (examples)
+- Risk zone visualizations are unique contribution - showcase prominently
+- Confusion matrices are evidence of performance - include all major ones
+- Training curves show learning process - select best examples only
+
+---
+
+## MASTER THESIS LOCATION
+
+Main document: thesis_documentation/docx/MASTER_THESIS_COMPLETE.docx
+
+Copy this guide to thesis_documentation/ directory for reference during integration.
+
+"""
+    
+    return guide
+
+def main():
+    """Generate visual integration guide"""
+    
+    guide = generate_visual_integration_guide()
+    
+    # Save guide
+    output_file = 'VISUAL_INTEGRATION_GUIDE.md'
+    with open(output_file, 'w', encoding='utf-8') as f:
+        f.write(guide)
+    
+    print("=" * 80)
+    print("✅ VISUAL INTEGRATION GUIDE GENERATED!")
+    print("=" * 80)
+    print(f"Output file: {output_file}")
+    print()
+    print("Summary:")
+    print("  • Confusion Matrices: 6 files (CRITICAL)")
+    print("  • Training Metrics: 3 files")
+    print("  • Risk Zone Examples: 5 files")
+    print("  • Pipeline Optimization: 5 files")
+    print("  • Preprocessing: 3 files")
+    print("  • Research Overview: 3 files")
+    print("  • Stage 1 Detection: 2 files")
+    print("  • Full Pipeline Examples: 4 files")
+    print("  • Screening Analysis: 2 files")
+    print()
+    print("  TOTAL RECOMMENDED: ~33 figures across all sections")
+    print("=" * 80)
+    print()
+    print("Next Steps:")
+    print("  1. Open: thesis_documentation/docx/MASTER_THESIS_COMPLETE.docx")
+    print("  2. Follow guide to embed each figure in appropriate section")
+    print("  3. Add figure captions using Word's caption feature")
+    print("  4. Insert cross-references in text")
+    print("  5. Update all fields before final PDF export (Ctrl+A, F9)")
+    print("=" * 80)
+
+if __name__ == "__main__":
+    main()

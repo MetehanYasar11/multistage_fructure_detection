@@ -474,8 +474,8 @@ if __name__ == "__main__":
     # Configuration
     STAGE1_MODEL = 'detectors/RCTdetector_v11x_v2.pt'
     VIT_CHECKPOINT = 'runs/vit_sr_clahe_auto/best_model.pth'
-    TEST_DIR = r'C:\Users\maspe\OneDrive\Masaüstü\masterthesis\Dataset_2021\Dataset_2021\Dataset\Fractured'
-    OUTPUT_DIR = 'outputs/risk_zones_vit'
+    TEST_DIR = r'C:\Users\maspe\OneDrive\Masaüstü\masterthesis\new_data\test'
+    OUTPUT_DIR = 'outputs/FINAL_risk_zones_vit_new_test'
     
     # Run visualization
     visualize_risk_zones_vit(
