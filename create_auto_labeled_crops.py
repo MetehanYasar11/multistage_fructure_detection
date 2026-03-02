@@ -493,7 +493,7 @@ def main():
     """Main execution"""
     # Paths
     DETECTOR_PATH = "detectors/RCTdetector_v11x_v2.pt"  # YENİ MODEL
-    SOURCE_DATASET = r"C:\Users\maspe\OneDrive\Masaüstü\masterthesis\Dataset_2021\Dataset_2021\Dataset"
+    SOURCE_DATASET = r"C:\Users\maspe\OneDrive\Masaüstü\masterthesis\dental_fracture_detection\okandataset_final\Dataset"
     OUTPUT_DATASET = "auto_labeled_crops"
     
     print("="*80)

@@ -1,112 +1,220 @@
-# Dental Fracture Detection System - Prototype
+# Dental Fracture Detection System - Prototype# Dental Fracture Detection System - Prototype
 
-Multi-stage deep learning system for detecting vertical root fractures in root canal treatments (RCT) from panoramic dental X-rays.
 
-## 🎯 System Overview
 
-This prototype uses a **two-stage pipeline** with **risk zone visualization**:
+Multi-stage deep learning system for detecting vertical root fractures (VRF) in root canal treatments (RCT) from panoramic dental X-rays.Multi-stage deep learning system for detecting vertical root fractures in root canal treatments (RCT) from panoramic dental X-rays.
 
-1. **Stage 1 (Detection):** YOLOv11x detects RCT locations in panoramic X-rays
-2. **Stage 2 (Classification):** Vision Transformer (ViT-Small) classifies each RCT crop as fractured or healthy
-3. **Risk Zones:** Color-coded visualization for clinical decision support
 
-## 📊 Performance Metrics
 
-### Stage 2 (Crop-Level) - ViT-Small + SR+CLAHE
-- **Accuracy:** 84.78%
-- **Precision:** 0.7237
-- **Recall:** 0.8871
-- **Specificity:** 0.8279
-- **F1 Score:** 0.7971
+## 🎯 System Overview## 🎯 System Overview
+
+
+
+This prototype uses a **two-stage pipeline** with **risk zone visualization**:This prototype uses a **two-stage pipeline** with **risk zone visualization**:
+
+
+
+1. **Stage 1 (Detection):** YOLOv11x detects RCT locations in full panoramic X-rays1. **Stage 1 (Detection):** YOLOv11x detects RCT locations in panoramic X-rays
+
+2. **Stage 2 (Classification):** Vision Transformer (ViT) classifies each RCT crop as fractured or healthy2. **Stage 2 (Classification):** Vision Transformer (ViT-Small) classifies each RCT crop as fractured or healthy
+
+3. **Risk Zones:** Color-coded visualization for clinical decision support3. **Risk Zones:** Color-coded visualization for clinical decision support
+
+
+
+## 📊 Dataset Statistics## 📊 Performance Metrics
+
+
+
+The evaluation and training use a meticulously verified dataset structure:### Stage 2 (Crop-Level) - ViT-Small + SR+CLAHE
+
+- **Original Source Dataset:** 487 panoramic radiographs (373 fractured + 114 healthy)- **Accuracy:** 84.78%
+
+- **Stage 2 Auto-Labeled Crops Dataset:** 1,528 total RCT crops- **Precision:** 0.7237
+
+  - **Training (70%):** 1,069 crops- **Recall:** 0.8871
+
+  - **Validation (15%):** 229 crops- **Specificity:** 0.8279
+
+  - **Test (15%):** 230 crops- **F1 Score:** 0.7971
+
+  - **Class Distribution:** 486 Fractured (31.8%) / 1,042 Healthy (68.2%)
 
 **Evaluation on 184 crops from 50 test images:**
-- GT Healthy: 122 crops
+
+## 📈 Performance Metrics- GT Healthy: 122 crops
+
 - GT Fractured: 62 crops
-- True Positives: 55
-- True Negatives: 101
-- False Positives: 21
+
+### Stage 2 Classifier (Crop-Level on Test Set)- True Positives: 55
+
+- **Accuracy:** 78.26%- True Negatives: 101
+
+- **Loss Strategy:** Weighted CrossEntropy to handle class imbalance (Healthy: ~0.73, Fractured: ~1.57)- False Positives: 21
+
 - False Negatives: 7
 
-### Image-Level (Risk Zone Evaluation)
-- **Accuracy:** 89.47%
-- **Precision:** 1.00 (Zero false alarms!)
-- **Recall:** 0.8947
-- **F1 Score:** 0.9444
+### Full Pipeline Image-Level (Evaluated on 70 Test Images)
 
-## 🏗️ Architecture
+- **Accuracy:** 82.86%### Image-Level (Risk Zone Evaluation)
 
-### Stage 1: RCT Detection
+- **Precision:** 0.9024 (Very high confidence when alarming)- **Accuracy:** 89.47%
+
+- **Recall:** 0.8222- **Precision:** 1.00 (Zero false alarms!)
+
+- **F1 Score:** 0.8605- **Recall:** 0.8947
+
+- **Specificity:** 0.8400- **F1 Score:** 0.9444
+
+
+
+*Note: The image-level pipeline aggregates crop risk zones, offering a superior clinical metric compared to raw crop-level classification.*## 🏗️ Architecture
+
+
+
+## 🏗️ Architecture### Stage 1: RCT Detection
+
 - **Model:** YOLOv11x (class: Root Canal Treatment, index=9)
-- **Confidence:** 0.3
-- **Bbox Expansion:** 2.2x scale factor around center
 
-### Stage 2: Fracture Classification
+### Stage 1: RCT Detection- **Confidence:** 0.3
+
+- **Model:** YOLOv11x (class: Root Canal Treatment, index=9)- **Bbox Expansion:** 2.2x scale factor around center
+
+- **Confidence Threshold:** 0.3
+
+- **Bbox Expansion:** 2.2x scale factor around the detected center to capture surrounding root context.### Stage 2: Fracture Classification
+
 - **Model:** ViT-Small (vit_small_patch16_224)
-- **Parameters:** ~22M
-- **Preprocessing:** SR+CLAHE
-  - Super-resolution: 4x bicubic upscaling
-  - CLAHE: clipLimit=2.0, tileGridSize=(16,16)
-- **Loss:** Weighted CrossEntropyLoss (handles class imbalance)
-  - Healthy weight: 0.73
-  - Fractured weight: 1.57
 
-### Training Dataset
+### Stage 2: Fracture Classification- **Parameters:** ~22M
+
+- **Model:** ViT-Small (`vit_small_patch16_224`)- **Preprocessing:** SR+CLAHE
+
+- **Parameters:** ~22M  - Super-resolution: 4x bicubic upscaling
+
+- **Preprocessing:** Super-Resolution + CLAHE  - CLAHE: clipLimit=2.0, tileGridSize=(16,16)
+
+  - **Super-resolution:** 4x bicubic upscaling (enhances fine fracture details)- **Loss:** Weighted CrossEntropyLoss (handles class imbalance)
+
+  - **CLAHE:** clipLimit=2.0, tileGridSize=(16,16) (improves local contrast)  - Healthy weight: 0.73
+
+  - *Result:* The enhanced image is resized back to original crop size ensuring a consistent input shape for ViT, while retaining enhanced textures.  - Fractured weight: 1.57
+
+
+
+## 🚦 Risk Zone System### Training Dataset
+
 - **Auto-labeled crops:** 1,604 samples
-  - Fractured: 486 (30.3%)
-  - Healthy: 1,118 (69.7%)
-- **Split:** 70% train / 15% val / 15% test
-- **Stratified sampling** to maintain class balance
 
-## 🚦 Risk Zone System
+Visual feedback designed for radiologists:  - Fractured: 486 (30.3%)
 
-Visual feedback for radiologists:
+- 🟢 **GREEN (Safe):** Healthy probability > 60% → No review needed  - Healthy: 1,118 (69.7%)
 
-- 🟢 **GREEN (Safe):** Healthy probability > 60% → No review needed
-- 🟡 **YELLOW (Warning):** Both probabilities 40-60% → Doctor should check
-- 🔴 **RED (Danger):** Fractured probability > 60% → ALARM! Must review
+- 🟡 **YELLOW (Warning):** Probabilities 40-60% → Model uncertain, Doctor should check manually- **Split:** 70% train / 15% val / 15% test
 
-**Clinical Advantage:** Perfect precision (1.00) = Zero false alarms!
+- 🔴 **RED (Danger):** Fractured probability > 60% → ALARM! High likelihood of VRF- **Stratified sampling** to maintain class balance
 
-## 📁 Repository Structure
 
-```
-dental_fracture_detection/
-├── create_auto_labeled_crops.py      # Automatic crop labeling (Stage 1 + GT lines)
-├── train_vit_sr_clahe_auto.py        # ViT training with weighted loss
-├── evaluate_stage2_gt.py             # Crop-level evaluation with GT
-├── visualize_risk_zones_vit.py       # Risk zone visualization (full pipeline)
-├── config.yaml                       # Configuration file
-├── requirements.txt                  # Python dependencies
-└── README.md                         # This file
-```
 
-## 🚀 Installation
+## 🚀 Quick Start Guide## 🚦 Risk Zone System
 
-### Prerequisites
+
+
+### PrerequisitesVisual feedback for radiologists:
+
 - Python 3.8+
-- CUDA-capable GPU (recommended)
 
-### Install Dependencies
+- CUDA-capable GPU (highly recommended)- 🟢 **GREEN (Safe):** Healthy probability > 60% → No review needed
+
+- 🟡 **YELLOW (Warning):** Both probabilities 40-60% → Doctor should check
+
+### 1. Install Dependencies- 🔴 **RED (Danger):** Fractured probability > 60% → ALARM! Must review
+
+
+
+```bash**Clinical Advantage:** Perfect precision (1.00) = Zero false alarms!
+
+conda create -n dental-ai python=3.10
+
+conda activate dental-ai## 📁 Repository Structure
+
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+pip install ultralytics timm opencv-python scikit-learn matplotlib seaborn tqdm pandas```
+
+```dental_fracture_detection/
+
+├── create_auto_labeled_crops.py      # Automatic crop labeling (Stage 1 + GT lines)
+
+### 2. Prepare Auto-Labeled Dataset├── train_vit_sr_clahe_auto.py        # ViT training with weighted loss
+
+Generate training crops from panoramic X-rays using the Stage 1 detector + GT fracture lines (utilizes Liang-Barsky line clipping intersection algorithm):├── evaluate_stage2_gt.py             # Crop-level evaluation with GT
+
+```bash├── visualize_risk_zones_vit.py       # Risk zone visualization (full pipeline)
+
+python create_auto_labeled_crops.py├── config.yaml                       # Configuration file
+
+```├── requirements.txt                  # Python dependencies
+
+*(Creates `auto_labeled_crops/` with healthy and fractured folders based on GT overlap)*└── README.md                         # This file
+
+```
+
+### 3. Apply Preprocessing (SR + CLAHE)
+
+Enhance the crop images before training:## 🚀 Installation
 
 ```bash
-pip install -r requirements.txt
-```
+
+python preprocess_auto_labeled_sr_clahe.py### Prerequisites
+
+```- Python 3.8+
+
+*(Creates `auto_labeled_crops_sr_clahe/`)*- CUDA-capable GPU (recommended)
+
+
+
+### 4. Train Stage 2 Classifier### Install Dependencies
+
+Train the ViT model on the preprocessed auto-labeled crops:
+
+```bash```bash
+
+python train_vit_sr_clahe_auto.pypip install -r requirements.txt
+
+``````
+
+*(Best model is saved to `runs/vit_sr_clahe_auto/best_model.pth`)*
 
 **Key Dependencies:**
-- `torch>=2.0.0`
-- `torchvision>=0.15.0`
-- `ultralytics>=8.0.0` (YOLOv11)
-- `timm>=0.9.0` (Vision Transformers)
-- `opencv-python>=4.8.0`
-- `scikit-learn>=1.3.0`
+
+### 5. Final Full-Pipeline Evaluation & Visualization- `torch>=2.0.0`
+
+Evaluate final results on test images. This tests the full cascade (Full Image → Stage 1 → Crop Extraction → SR+CLAHE → Stage 2 → Risk Zone creation):- `torchvision>=0.15.0`
+
+```bash- `ultralytics>=8.0.0` (YOLOv11)
+
+python evaluate_70images_with_riskzones.py- `timm>=0.9.0` (Vision Transformers)
+
+```- `opencv-python>=4.8.0`
+
+*(Check `outputs/FINAL_70images_riskzones/` for metrics JSON and visually bounded output images)*- `scikit-learn>=1.3.0`
+
 - `matplotlib>=3.7.0`
-- `seaborn>=0.12.0`
+
+## 📁 Key Repository Files- `seaborn>=0.12.0`
+
 - `tqdm>=4.65.0`
 
-## 📖 Usage
+- `create_auto_labeled_crops.py`: Auto-labels Stage 1 detected RCTs based on GT annotations.
 
-### 1. Automatic Crop Labeling
+- `preprocess_auto_labeled_sr_clahe.py`: Prepares SR+CLAHE dataset.## 📖 Usage
 
+- `train_vit_sr_clahe_auto.py`: ViT-Small model training script.
+
+- `evaluate_70images_with_riskzones.py`: Main clinical evaluation pipeline script.### 1. Automatic Crop Labeling
+
+- `create_pipeline_figure_v4.py`: Script to generate methodological architecture figures with real images demonstrating the challenging scale differences (Image → RCT Crop → min enclosing VRF bbox).
 Generate training dataset from panoramic X-rays using Stage 1 detector + GT fracture lines:
 
 ```bash
