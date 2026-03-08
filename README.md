@@ -178,18 +178,24 @@ python preprocess_auto_labeled_sr_clahe.py### Prerequisites
 
 Train the ViT model on the preprocessed auto-labeled crops:
 
-```bash```bash
-
-python train_vit_sr_clahe_auto.pypip install -r requirements.txt
-
-``````
+```bash
+python train_vit_sr_clahe_auto.py
+```
 
 *(Best model is saved to `runs/vit_sr_clahe_auto/best_model.pth`)*
 
-**Key Dependencies:**
+### 5. Experimental U2-Net Segmentation (New)
+Alternatively, you can test the new U²-Net Lite segmentation approach (inspired by SEI Detection studies) designed to trace the actual crack lines instead of basic classification:
+```bash
+# Generate Segmentation Dataset
+python create_auto_seg_crops.py
+python preprocess_segmentation_sr_clahe.py
+# Train and Evaluate U2-Net Lite
+python train_u2net_sr_clahe.py
+python evaluate_u2net.py
+```
 
-### 5. Final Full-Pipeline Evaluation & Visualization- `torch>=2.0.0`
-
+### 6. Final Full-Pipeline Evaluation & Visualization
 Evaluate final results on test images. This tests the full cascade (Full Image → Stage 1 → Crop Extraction → SR+CLAHE → Stage 2 → Risk Zone creation):- `torchvision>=0.15.0`
 
 ```bash- `ultralytics>=8.0.0` (YOLOv11)
@@ -208,70 +214,15 @@ python evaluate_70images_with_riskzones.py- `timm>=0.9.0` (Vision Transformers)
 
 - `create_auto_labeled_crops.py`: Auto-labels Stage 1 detected RCTs based on GT annotations.
 
-- `preprocess_auto_labeled_sr_clahe.py`: Prepares SR+CLAHE dataset.## 📖 Usage
+- `preprocess_auto_labeled_sr_clahe.py`: Prepares SR+CLAHE dataset.
 
 - `train_vit_sr_clahe_auto.py`: ViT-Small model training script.
 
-- `evaluate_70images_with_riskzones.py`: Main clinical evaluation pipeline script.### 1. Automatic Crop Labeling
+- `evaluate_70images_with_riskzones.py`: Main clinical evaluation pipeline script.
 
 - `create_pipeline_figure_v4.py`: Script to generate methodological architecture figures with real images demonstrating the challenging scale differences (Image → RCT Crop → min enclosing VRF bbox).
-Generate training dataset from panoramic X-rays using Stage 1 detector + GT fracture lines:
-
-```bash
-python create_auto_labeled_crops.py
-```
-
-**Output:** `auto_labeled_crops/` folder with:
-- `fractured/` - Crops containing fracture lines
-- `healthy/` - Crops without fracture lines
-- Metadata JSON files with bbox info
-
-### 2. Train Stage 2 Classifier
-
-Train ViT model with SR+CLAHE preprocessing:
-
-```bash
-python train_vit_sr_clahe_auto.py
-```
-
-**Configuration in script:**
-- Dataset: `auto_labeled_crops_sr_clahe/`
-- Epochs: 50
-- Batch size: 32
-- Learning rate: 1e-4
-- Weighted loss for class imbalance
-
-**Output:** `runs/vit_sr_clahe_auto/`
-- `best_model.pth` - Best model checkpoint
-- `confusion_matrix.png` - Confusion matrix
-- `history.json` - Training curves
-- `results.json` - Final metrics
-
-### 3. Evaluate Stage 2
-
-Evaluate crop-level performance with GT fracture lines:
-
-```bash
-python evaluate_stage2_gt.py
-```
-
-**Output:** `outputs/risk_zones_vit/stage2_gt_evaluation/`
-- `stage2_confusion_matrix_gt.png` - Confusion matrix
-- `stage2_evaluation_summary.png` - Performance summary
-- `stage2_evaluation_results_gt.json` - Detailed results
-
-### 4. Visualize Risk Zones
-
-Run full pipeline on test images with risk zone visualization:
-
-```bash
-python visualize_risk_zones_vit.py
-```
-
-**Output:** `outputs/risk_zones_vit/`
-- Color-coded X-ray visualizations
-- Risk zone statistics
-- Image-level evaluation metrics
+- `train_u2net_sr_clahe.py`: Experimental U²-Net segmentation training script for fine morphologic structure tracing.
+- `evaluate_u2net.py`: U²-Net segmentation visualization and benchmarking script.
 
 ## 🎓 Key Features
 
