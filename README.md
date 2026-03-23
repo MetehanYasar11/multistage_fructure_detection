@@ -349,4 +349,69 @@ For questions or collaboration:
 ---
 
 **Status:** Prototype - Production-ready performance (89% accuracy, 100% precision)  
-**Last Updated:** December 17, 2025
+**Last Updated:** March 23, 2026
+
+---
+
+## 📅 Changelog
+
+### [2026-03-23] U2-Net 3-Class Segmentation — Ablation Study & Final Model
+
+#### Problem
+Binary U2-Net segmentation was confusing **canal fillings** with **fractures** (both appear as thin white lines). Baseline 3-class model (v3) achieved only Dice[fracture]=0.211, mDice(fg)=0.189.
+
+#### Research Findings
+- **İnönü et al. (Diagnostics 2025;15(14):1744):** CLAHE actually hurts U2-Net performance (Dice 0.849→0.827). Min-max normalization + 500 epochs recommended.
+- **clDice (CVPR 2021):** Topology-preserving loss for thin curvilinear structures via soft skeletonization.
+- **Focal Tversky Loss (Abraham & Khan 2019):** Better handles extreme class imbalance (α=0.3, β=0.7, γ=0.75).
+- **Class imbalance:** BG=99.44%, Canal=0.32%, Fracture=0.23% → extreme foreground scarcity.
+
+#### Ablation Study (6 experiments × 50 epochs)
+Each experiment tests ONE improvement vs baseline:
+
+| # | Experiment | Dice[frac] | Dice[canal] | mDice(fg) | Img F1 |
+|---|-----------|-----------|------------|----------|--------|
+| 1 | No CLAHE (raw data) | 0.216 | 0.226 | 0.221 | 0.742 |
+| 2 | Dilation 11×11 | 0.342 | 0.310 | 0.326 | 0.713 |
+| 3 | **Focal Tversky Loss** | **0.435** | **0.424** | **0.430** | **0.775** |
+| 4 | Data Augmentation | 0.369 | 0.295 | 0.332 | 0.774 |
+| 5 | clDice Loss | 0.323 | 0.285 | 0.304 | 0.753 |
+| 6 | **All Combined** | **0.501** | **0.476** | **0.488** | **0.782** |
+
+**Key findings:**
+- Focal Tversky Loss single-handedly provides +127% mDice improvement
+- Larger dilation (11×11) increases foreground from ~0.56% to ~2%, +47% mDice
+- CLAHE confirmed to NOT help (validating İnönü 2025)
+- All combined (exp6) achieves best results and keeps improving at epoch 50
+
+#### Final Model — U2-Net v4 (exp6 config + 200 epochs + early stopping)
+Config: Raw data (no CLAHE) + dilation 11×11 + Combo Loss (FTL + 0.5×clDice) + augmentation
+
+| Metric | Baseline v3 | **v4 Final** | Improvement |
+|--------|------------|-------------|-------------|
+| Dice[fracture] | 0.211 | **0.506** | **+140%** |
+| Dice[canal] | 0.167 | **0.464** | **+178%** |
+| mDice(fg) | 0.189 | **0.485** | **+157%** |
+| Image F1 | 0.746 | **0.800** | +7% |
+| Image Recall | 0.988 | 0.843 | -15% (less FP) |
+| Image Precision | 0.608 | **0.761** | +25% |
+
+- **Best epoch:** 42/62 (early stopped at epoch 62, patience=20)
+- **No overfitting:** val_loss steadily decreased until convergence
+- **Model:** `runs/u2net_v4_final/best_model.pth`
+
+#### Scripts
+- `run_ablation.py` — 6-experiment ablation study runner
+- `train_v4_final.py` — Final model training (200ep + early stop)
+- `create_auto_seg_crops_3class.py` — 3-class dataset generator (Liang-Barsky clipping)
+
+#### 3-Class Dataset
+- **770 crops** (445 fractured, 325 healthy canal)
+- Classes: 0=background, 1=canal filling, 2=fracture
+- GT-less crops skipped (no black masks)
+- Location: `auto_labeled_segmentation_3class/`
+
+### [2025-12-17] ViT-Small Classification Pipeline
+- Stage 2 ViT-Small classifier with SR+CLAHE preprocessing
+- Image-level F1=0.944, Precision=1.00, Recall=0.895
+- Risk zone visualization system (Green/Yellow/Red)
