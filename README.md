@@ -349,7 +349,46 @@ For questions or collaboration:
 ---
 
 **Status:** Prototype - Production-ready performance (89% accuracy, 100% precision)  
-**Last Updated:** March 23, 2026
+**Last Updated:** March 24, 2026
+
+---
+
+## 📬 Latest Experiment Summary (March 2026)
+
+We ran a systematic **6-experiment ablation study** (50 epochs each) to isolate the effect of each design choice on 3-class U²-Net segmentation (background / canal / fracture):
+
+| # | Change | mDice (fg) |
+|---|--------|-----------|
+| 1 | Remove CLAHE (raw input) | 0.221 |
+| 2 | + Mask dilation (11×11) | 0.326 |
+| 3 | + Focal Tversky Loss | 0.430 |
+| 4 | + Data augmentation | 0.332 |
+| 5 | + clDice (topology loss) | 0.304 |
+| 6 | **All combined** | **0.488** |
+
+The best configuration (exp6) was then trained for **200 epochs with early stopping** (patience=20). Training converged at **epoch 42**:
+
+- **Fracture Dice: 0.506** (+140% vs baseline)
+- **Canal Dice: 0.464** (+178% vs baseline)
+- **Image-level F1: 0.800**
+
+### How to Reproduce
+
+All scripts are on the `master` branch. Run in order:
+
+```bash
+# 1. Generate the 770-crop 3-class dataset
+python create_auto_seg_crops_3class.py
+
+# 2. Run the full 6-experiment ablation study
+python run_ablation.py
+
+# 3. Train the final model (best config from ablation)
+python train_v4_final.py
+
+# 4. Evaluate on the test set
+python evaluate_u2net_v3.py
+```
 
 ---
 
